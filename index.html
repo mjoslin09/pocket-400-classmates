@@ -247,6 +247,32 @@ a.ref{color:var(--accent)}
 .sum .tile b{justify-content:center;font-size:24px}
 .sum .goalhit{margin:-6px 0 18px;color:var(--gold);font-weight:700}
 
+/* market brief */
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bhead span{color:var(--muted);font-size:14px;font-weight:600}
+.bnums{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bnum{display:block;padding:10px 12px;border-radius:12px;background:var(--sheet);border:1px solid var(--rule);color:inherit;text-decoration:none;box-shadow:var(--shadow)}
+.bnum small{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.bnum b{display:block;font-family:var(--display);font-size:21px;font-weight:800;letter-spacing:-.01em;font-variation-settings:"wdth" 87.5;font-variant-numeric:tabular-nums}
+.bnum span{display:block;font-size:12.5px;color:var(--ink-2)}
+.bnum em{display:block;font-style:normal;font-size:12px;color:var(--muted)}
+.bup{color:var(--got)!important} .bdn{color:var(--miss)!important}
+a.bnum:active{transform:translateY(1px)}
+.brow{align-items:flex-start}
+.bn{flex:none;width:22px;height:22px;border-radius:7px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:12.5px;display:grid;place-items:center;margin-top:1px}
+.btx{display:block;font-size:14px;color:var(--ink-2);line-height:1.45;margin-top:2px}
+.src{display:inline-flex;align-items:center;gap:3px;color:var(--accent);font-weight:600;font-size:12.5px;text-decoration:none;white-space:nowrap}
+.chip.mine{border-color:var(--accent);color:var(--accent);background:var(--accent-soft);flex:none}
+.sowhat{margin-top:12px;padding:12px 14px;border-radius:14px;background:var(--part-soft)}
+.sowhat small{display:block;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--part)}
+.sowhat p{margin:4px 0 2px;font-size:15px;line-height:1.5}
+.pitchtx{white-space:pre-wrap;font-size:15.5px;line-height:1.6}
+.bquiz{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;margin-top:12px;padding:14px 16px;border-radius:14px;background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 0 var(--lift)}
+.bquiz b{display:block;font-size:16px}
+.bquiz small{display:block;font-size:13px;opacity:.9}
+.bquiz svg{width:22px;height:22px;flex:none}
+.bsrc{display:flex;flex-wrap:wrap;gap:8px 14px;padding:12px 14px}
+
 /* tab bar */
 .tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--sheet);border-top:1px solid var(--rule);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
 .tabs .in{max-width:600px;margin:0 auto;display:flex}
@@ -271,6 +297,8 @@ const LIBRARY = [{"title": "400 Questions IB Interview Guide (2025 edition)", "d
 const DEALS = [];
 const CHANGES = {"summary": "Classmate edition: 471 technical questions in five difficulty tiers, from one-breath definitions to full paper-LBO and merger math. 180 IB 400 generalist technicals, 15 from the guide's industry sections, 13 from the Red Book industrials chapter, 25 real interview questions (Jefferies first round, plus Morgan Stanley and Guggenheim gotchas) and 238 supplemental questions. Page references point to your own copies of the 400 Questions guide, the WSP Red Book and the BIWS modules.", "added": [], "cut": [], "moves": [["Q004", 2, 1, "definition-level"], ["Q011", 2, 1, "definition-level"], ["Q012", 3, 2, "must-know walkthrough, drilled since Phase 1"], ["Q021", 5, 4, "conceptual, no calculation (the calc versions Q040/Q041 stay tier 5)"], ["Q029", 3, 2, "single-step opex walkthrough"], ["Q045", 1, 2, "multi-step combined walkthrough, not a tier-1 recall"], ["Q053", 4, 3, "standard bridge logic"], ["Q068", 4, 3, "two-step EV/EqV trace"], ["Q069", 4, 3, "one-line TSM arithmetic"], ["Q072", 3, 2, "standard pros/cons recall"], ["Q079", 1, 2, "has a trap (current EV, not projected)"], ["Q098", 4, 3, "simple arithmetic once you see it"], ["Q100", 1, 3, "requires lease-normalization reasoning (EBITDAR), not a tier-1 recall"], ["Q102", 3, 2, "the most-asked question; must be automatic"], ["Q104", 3, 2, "standard TV recall"], ["Q107", 3, 4, "phased-WACC build"], ["Q116", 2, 3, "nuanced lease treatment"], ["Q118", 4, 3, "formula + direction"], ["Q119", 4, 3, "formula + direction"], ["Q123", 3, 4, "two opposing channels"], ["Q128", 3, 2, "CAPM formula recall"], ["Q132", 4, 3, "formulas to know cold"], ["Q135", 3, 2, "recall"], ["Q144", 4, 3, "standard private-deal mechanics"], ["Q162", 3, 2, "core walkthrough"]], "rule": "Supplemental questions keep their v1.0 difficulty (1–3) as the base, with compare / scenario / walkthrough questions pushed one tier harder (a 2 becomes a 3, a 3-scenario becomes a 4) and a few explicit calls (paper LBOs, the synthesis questions, the TSM arithmetic). Within a tier the order is: IB 400 by ladder rank, then the industry sections, Red Book, Added, then supplemental."};
 const KEY='pocket400-classmates';
+const BRIEF_URL='https://mjoslin09.github.io/pocket-400-brief/brief.json';
+const BRIEF_FALLBACK={"date": "2026-10-23", "asof": "Markets as of the Fri 23 Oct close", "refreshed": "Sun 25 Oct, 5:00pm CT", "numbers": [{"label": "S&P 500", "value": "7,624", "change": "−0.5% on the day", "dir": "down", "note": "Nasdaq −0.2%, Dow −1.2%", "src": {"t": "Yahoo Finance: S&P 500 history", "u": "https://finance.yahoo.com/quote/%5EGSPC/history/", "paywall": false}}, {"label": "10-yr Treasury", "value": "5.00%", "change": "+4 bp", "dir": "up", "note": "Back to 5% after a 17 bp drop to 4.96% on Thursday", "src": {"t": "U.S. Treasury: daily par yield curve", "u": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610", "paywall": false}}, {"label": "2-yr Treasury", "value": "4.69%", "change": "+4 bp", "dir": "up", "note": "2s10s about +31 bp", "src": {"t": "U.S. Treasury: daily par yield curve", "u": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610", "paywall": false}}, {"label": "Fed funds target", "value": "3.75–4.00%", "change": "Unchanged", "dir": "flat", "note": "Raised 25 bp on 17 Sep; next FOMC 27–28 Oct", "src": {"t": "Federal Reserve: open market operations", "u": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm", "paywall": false}}, {"label": "Odds of a hold on 28 Oct", "value": "~90%", "change": "~10% odds of a 25 bp hike", "dir": "flat", "note": "From 30-day fed funds futures, updated after Friday's close", "src": {"t": "Investing.com Fed Rate Monitor", "u": "https://www.investing.com/central-banks/fed-rate-monitor", "paywall": false}}, {"label": "WTI crude", "value": "~$103", "change": "+$3.80 (+3.8%)", "dir": "up", "note": "December contract, $103.27", "src": {"t": "Yahoo Finance: WTI futures", "u": "https://finance.yahoo.com/quote/CL%3DF/", "paywall": false}}, {"label": "VIX", "value": "19.5", "change": "+0.4 on the day", "dir": "up", "note": "Closed at 19.45, up from 19.03", "src": {"t": "Yahoo Finance: VIX history", "u": "https://finance.yahoo.com/quote/%5EVIX/history/", "paywall": false}}], "drivers": [{"title": "Oil jumps on Middle East supply risk", "text": "Brent rose about 3% to above $116 a barrel and WTI settled near $103 as fresh Middle East supply worries hit. Oil pressured most of the market and the Dow lost about 650 points.", "src": {"t": "AP via Yahoo Finance", "u": "https://finance.yahoo.com/markets/world-indices/articles/major-us-stock-indexes-fared-201458598.html", "paywall": false}}, {"title": "AI doubts spread past tech", "text": "Thursday's selloff started with Meta falling nearly 8% after earnings and a plan to sell new non-voting shares to fund AI spending, which sent buyers into Treasuries. Tech steadied Friday but selling spread to other sectors.", "src": {"t": "The Globe and Mail", "u": "https://www.theglobeandmail.com/investing/article-us-bond-yields-plunge-as-fears-about-sustaining-ai-boom-resurface/", "paywall": true}}, {"title": "Fed decides Wednesday", "text": "Futures put about 90% odds on the Fed holding at 3.75–4.00% on 28 Oct after September's hike. The 10-year drifted back to 5.00% Friday after its biggest drop in months on Thursday.", "src": {"t": "Investing.com Fed Rate Monitor", "u": "https://www.investing.com/central-banks/fed-rate-monitor", "paywall": false}}], "deals": [{"name": "CRH / Arcosa closes", "parties": ["CRH", "Arcosa"], "value": "~$8.5B EV", "status": "Closed", "date": "23 Oct", "banks": [], "src": {"t": "CRH release (SEC 8-K exhibit)", "u": "https://www.sec.gov/Archives/edgar/data/0000849395/000119312526429523/d187492dex991.htm", "paywall": false}}, {"name": "EQT to take QIAGEN private", "parties": ["EQT", "QIAGEN", "ADIA", "CPP Investments"], "value": "€9.6B equity (~$12.1B incl. net debt)", "status": "Announced", "date": "21 Oct", "banks": [], "src": {"t": "Reuters via KFGO", "u": "https://kfgo.com/2026/10/21/buyout-firm-eqt-to-acquire-qiagen-for-10-8-billion/", "paywall": false}}, {"name": "Trane Technologies / Cancoil", "parties": ["Trane Technologies", "Cancoil Thermal"], "value": "Undisclosed", "status": "Announced", "date": "21 Oct", "banks": ["Lazard (Cancoil)"], "src": {"t": "Trane release via Yahoo Finance", "u": "https://finance.yahoo.com/markets/stocks/articles/trane-technologies-acquire-cancoil-strengthening-203000885.html", "paywall": false}}], "sowhat": {"text": "Strategics and sponsors are still getting deals done with the 10-year near 5%: CRH closed Arcosa ahead of its original timeline and EQT lined up equity and debt for a $12B take-private. Industrial buyers keep paying for infrastructure and data center cooling exposure."}, "pitch": "Markets were soft on Friday. The S&P slipped about half a percent and the Dow lost over 600 points, mostly because oil jumped again, with Brent above $116 on Middle East supply worries. Second, the AI selloff that started with Meta on Thursday spread beyond tech, which pushed money into Treasuries; the 10-year dipped under 5% before ending the week right at 5%. Third, the Fed meets this week and futures price about a 90% chance it holds at 3.75 to 4%. On the M&A side, deals are still closing despite high rates. CRH finished its $8.5 billion Arcosa deal early, EQT agreed to take QIAGEN private for about $12 billion with sovereign co-investors, and Trane bought Cancoil to add data center cooling capacity.", "quiz": [{"q": "Where did the 10-year Treasury close on Friday 23 Oct?", "a": "5.00%, up 4 bp after falling to 4.96% on Thursday.", "options": ["About 4.6%", "About 4.8%", "About 5.0%", "About 5.3%"], "correct": 2}, {"q": "What odds do futures put on the Fed holding at its 28 Oct meeting?", "a": "About 90%, with roughly a 10% chance of another 25 bp hike from the current 3.75–4.00% range.", "options": ["About 50%", "About 70%", "About 90%", "About 100%"], "correct": 2}, {"q": "Which acquisition closed on 23 Oct?", "a": "CRH's purchase of Arcosa, at about $8.5 billion of enterprise value.", "options": ["EQT / QIAGEN", "CRH / Arcosa", "Trane / Cancoil", "Prysmian / Atkore"], "correct": 1}], "sources": [{"t": "Yahoo Finance: S&P 500 history", "u": "https://finance.yahoo.com/quote/%5EGSPC/history/", "paywall": false}, {"t": "U.S. Treasury: daily par yield curve", "u": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610", "paywall": false}, {"t": "Federal Reserve: open market operations", "u": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm", "paywall": false}, {"t": "Federal Reserve: FOMC calendar", "u": "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm", "paywall": false}, {"t": "Investing.com Fed Rate Monitor", "u": "https://www.investing.com/central-banks/fed-rate-monitor", "paywall": false}, {"t": "Yahoo Finance: WTI futures", "u": "https://finance.yahoo.com/quote/CL%3DF/", "paywall": false}, {"t": "Yahoo Finance: VIX history", "u": "https://finance.yahoo.com/quote/%5EVIX/history/", "paywall": false}, {"t": "AP via Yahoo Finance", "u": "https://finance.yahoo.com/markets/world-indices/articles/major-us-stock-indexes-fared-201458598.html", "paywall": false}, {"t": "The Globe and Mail", "u": "https://www.theglobeandmail.com/investing/article-us-bond-yields-plunge-as-fears-about-sustaining-ai-boom-resurface/", "paywall": true}, {"t": "CRH release (SEC 8-K exhibit)", "u": "https://www.sec.gov/Archives/edgar/data/0000849395/000119312526429523/d187492dex991.htm", "paywall": false}, {"t": "Reuters via KFGO", "u": "https://kfgo.com/2026/10/21/buyout-firm-eqt-to-acquire-qiagen-for-10-8-billion/", "paywall": false}, {"t": "Trane release via Yahoo Finance", "u": "https://finance.yahoo.com/markets/stocks/articles/trane-technologies-acquire-cancoil-strengthening-203000885.html", "paywall": false}]};
 const TIERS={1:['Definitions','Say it in one breath'],2:['Core mechanics','Walkthroughs and bridges you must own'],3:['Applied','Interpretation, traps and judgment'],4:['Multi-step','Several steps, out loud'],5:['Full calculations','Paper LBO and merger math under time']};
 const SRC_NAMES={'400':'IB 400','400ind':'IB 400 · industry','rb':'Red Book','new':'Chicago industrials','supp':'Supplemental','live':'Real interview'};
 const XP={got:10,partial:5,missed:2};
@@ -288,6 +316,9 @@ const I={
   redo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>',
   case:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8.5 7V5.5A1.5 1.5 0 0 1 10 4h4a1.5 1.5 0 0 1 1.5 1.5V7M3 12.5h18"/></svg>',
   chart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 20V12M10 20V6M15 20v-9M20 20V9"/></svg>',
+  brief:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
   x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
   flag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>',
   shuffle:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h4v4M20 4l-6.5 6.5M4 20l6-6M16 20h4v-4M20 20l-5.5-5.5M4 4l5 5"/></svg>',
@@ -300,7 +331,7 @@ const I={
 /* ---------- data ---------- */
 const byId={}; QUESTIONS.forEach(q=>byId[q.id]=q);
 const dealQ={}; DEALS.forEach(s=>s.qs.forEach((q,i)=>{ const id=s.id+'-'+(i+1); dealQ[id]=Object.assign({id,deal:s.id,section:s.bank+' · '+s.title},q); }));
-function item(id){ return byId[id]||dealQ[id]; }
+function item(id){ return byId[id]||dealQ[id]||briefQ[id]; }
 function isDeal(id){ return !byId[id] && !!dealQ[id]; }
 function shortSec(s){ return String(s).replace(/\s*\((supplemental|400Q industry section|Red Book ch\.)\)/,'').replace(/ — added for Chicago mid-cap/,' (Chicago)').replace(/Discounted Cash Flow \(DCF\)/,'DCF').replace(/Equity Value & Enterprise Value/,'Equity & Enterprise Value').replace(/^Real interview — /,''); }
 const SECTIONS=[...new Set(QUESTIONS.slice().sort((a,b)=>a.so-b.so).map(q=>q.section))];
@@ -341,7 +372,7 @@ function dayKey(t){ const d=new Date(t); return d.getFullYear()+'-'+String(d.get
 function todayXP(){ return S.days[dayKey(Date.now())]||0; }
 function streak(){ const d=new Date(); let n=0; if(!(S.days[dayKey(d)]>0)) d.setDate(d.getDate()-1); while(S.days[dayKey(d)]>0){ n++; d.setDate(d.getDate()-1); } return n; }
 function totalXP(){ return Object.values(S.days).reduce((a,b)=>a+b,0); }
-function st(id){ const g=(isDeal(id)?S.d:S.g)[id]; return g?g.s:'none'; }
+function st(id){ if(briefQ[id]) return 'none'; const g=(isDeal(id)?S.d:S.g)[id]; return g?g.s:'none'; }
 function counts(ids){ const c={got:0,partial:0,missed:0,none:0}; ids.forEach(id=>c[st(id)]++); return c; }
 function lessonState(l){ const c=counts(l.ids); return {c,done:c.none===0,perfect:c.got===l.ids.length,started:c.none<l.ids.length}; }
 function currentLesson(){ return LESSONS.find(l=>!lessonState(l).done)||null; }
@@ -350,7 +381,8 @@ function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;',
 let tt; function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.dataset.on='1'; clearTimeout(tt); tt=setTimeout(()=>t.dataset.on='0',1800); }
 
 /* ---------- shell ---------- */
-const TABS=[['learn','Learn',I.path],['review','Review',I.redo]].concat(DEALS.length?[['deals','Deals',I.case]]:[]).concat([['library','Library',I.book],['progress','Progress',I.chart]]);
+const TABS=[['learn','Learn',I.path],['brief','Brief',I.brief],['review','Review',I.redo]].concat(DEALS.length?[['deals','Deals',I.case]]:[]).concat([['progress','Progress',I.chart]]);
+const VIEWS=['learn','brief','review','deals','library','progress'];
 let pop=null, dealOpen=null, libQ='', libSt='', libTier='', libSec='', pitchOpen=false, resetAsk=false;
 function topbar(){
   const n=streak(), x=todayXP(), g=S.goal, f=Math.min(1,x/g), C=2*Math.PI*9;
@@ -359,10 +391,10 @@ function topbar(){
     <span class="pill" title="Today's XP toward your daily goal"><svg class="ring" viewBox="0 0 24 24" width="20" height="20"><circle class="rb" cx="12" cy="12" r="9"/><circle class="rf" cx="12" cy="12" r="9" stroke-dasharray="${C*f} ${C}"/></svg>${x}/${g}</span></div></header>`;
 }
 function renderAll(){
-  if(!TABS.some(t=>t[0]===S.tab)) S.tab='learn';
-  document.querySelector('#tabs .in').innerHTML=TABS.map(([k,l,ic])=>`<button role="tab" data-act="tab" data-k="${k}" aria-selected="${S.tab===k}">${ic}${l}</button>`).join('');
+  if(!VIEWS.includes(S.tab)||(S.tab==='deals'&&!DEALS.length)) S.tab='learn';
+  document.querySelector('#tabs .in').innerHTML=TABS.map(([k,l,ic])=>`<button role="tab" data-act="tab" data-k="${k}" aria-selected="${S.tab===k||(S.tab==='library'&&k==='review')}">${ic}${l}</button>`).join('');
   const el=document.getElementById('app');
-  el.innerHTML=topbar()+({learn:viewLearn,review:viewReview,deals:viewDeals,library:viewLibrary,progress:viewProgress}[S.tab])();
+  el.innerHTML=topbar()+({learn:viewLearn,brief:viewBrief,review:viewReview,deals:viewDeals,library:viewLibrary,progress:viewProgress}[S.tab])();
   if(S.tab==='library') wireLibrary();
 }
 
@@ -387,11 +419,52 @@ function viewLearn(){
   return h+`<div class="unit-end">${QUESTIONS.length} questions · ${LESSONS.length} lessons</div>`;
 }
 
+/* ---------- market brief ---------- */
+// The brief is fetched fresh on open (BRIEF_URL) and cached for offline use; builds also embed the latest copy.
+let BRIEF=null, briefPitch=false, briefQ={};
+function setBrief(b){
+  if(!b||!b.date) return;
+  BRIEF=b; briefQ={};
+  (b.quiz||[]).forEach((q,i)=>{ const id='brief-'+b.date+'-'+i; briefQ[id]=Object.assign({id,section:'Market brief'},q); });
+}
+(function loadBrief(){
+  let cached=null; try{ cached=JSON.parse(localStorage.getItem(KEY+':brief')); }catch(e){}
+  const best=[cached,BRIEF_FALLBACK].filter(x=>x&&x.date).sort((a,b)=>a.date<b.date?1:-1)[0];
+  setBrief(best);
+  if(!BRIEF_URL||BRIEF_URL.startsWith('__')) return;
+  fetch(BRIEF_URL+'?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(b=>{
+    if(!b||!b.date||(BRIEF&&BRIEF.date>b.date&&BRIEF.refreshed>=b.refreshed)) return;
+    try{ localStorage.setItem(KEY+':brief',JSON.stringify(b)); }catch(e){}
+    const changed=!BRIEF||BRIEF.refreshed!==b.refreshed; setBrief(b);
+    if(changed&&!SES&&S.tab==='brief') renderAll();
+  }).catch(()=>{});
+})();
+function srcLink(s,label){ if(!s||!s.u) return ''; return `<a class="src" href="${esc(s.u)}" target="_blank" rel="noopener">${s.paywall?I.lock:''}${esc(label||s.t||'Source')}${I.ext}</a>`; }
+function fmtDay(d){ const [y,m,dd]=d.split('-').map(Number); return new Date(y,m-1,dd).toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}); }
+function onMySheets(deal){ const txt=((deal.parties||[]).join(' ')+' '+deal.name).toLowerCase(); return DEALS.find(s=>s.title.split(/\s+(?:acquires|merges with|takes)\s+/i).some(p=>p.length>3&&txt.includes(p.toLowerCase().replace(/[’']s\b.*$/,'').split(' ')[0]))); }
+function viewBrief(){
+  const b=BRIEF;
+  if(!b) return `<h1 class="pg">Market brief</h1><div class="card" style="padding:16px"><b>No brief yet</b><p class="note-s" style="margin:4px 0 0">The daily brief appears here each weekday morning. Open the app with internet to load it.</p></div>`;
+  const age=Math.round((new Date(dayKey(Date.now()))-new Date(b.date))/864e5), done=S.briefDone===b.date;
+  let h=`<div class="bhead"><h1 class="pg" style="margin:6px 0 0">Market brief</h1><span>${fmtDay(b.date)}</span></div>
+  <p class="note-s" style="margin:2px 2px 10px">${esc(b.asof||'')}${b.refreshed?` · refreshed ${esc(b.refreshed)}`:''}</p>
+  ${age>3?`<div class="dnote" style="margin:0 0 10px">This brief is from ${fmtDay(b.date)}. Check today's numbers before you quote them.</div>`:''}
+  <div class="bnums">${(b.numbers||[]).map(n=>{ const inner=`<small>${esc(n.label)}</small><b>${esc(n.value)}</b><span class="${n.dir==='up'?'bup':n.dir==='down'?'bdn':''}">${esc(n.change||'')}</span>${n.note?`<em>${esc(n.note)}</em>`:''}`; return n.src&&n.src.u?`<a class="bnum" href="${esc(n.src.u)}" target="_blank" rel="noopener" title="Source: ${esc(n.src.t||'')}">${inner}</a>`:`<div class="bnum">${inner}</div>`; }).join('')}</div>
+  <div class="sec-h">What's moving markets</div><div class="card rows">${(b.drivers||[]).map((d,i)=>`<div class="row brow"><span class="bn">${i+1}</span><span class="tx"><b>${esc(d.title)}</b><span class="btx">${esc(d.text)} ${srcLink(d.src)}</span></span></div>`).join('')}</div>`;
+  if((b.deals||[]).length) h+=`<div class="sec-h">Deals</div><div class="card rows">${b.deals.map(d=>{ const mine=onMySheets(d); return `<div class="row brow"><span class="tx"><b>${esc(d.name)}</b><span class="btx">${esc([d.value,d.status,d.date].filter(Boolean).join(' · '))}${(d.banks||[]).length?` · ${esc(d.banks.join(', '))}`:''} ${srcLink(d.src)}</span></span>${mine?`<span class="chip mine">Your sheet</span>`:''}</div>`; }).join('')}</div>`;
+  if(b.sowhat) h+=`<div class="sowhat"><small>So what for M&amp;A</small><p>${esc(b.sowhat.text||b.sowhat)}</p>${b.sowhat.src?srcLink(b.sowhat.src):''}</div>`;
+  if(b.pitch) h+=`<div class="card" style="padding:14px;margin-top:10px">${briefPitch?`<div class="sec-h" style="margin:0 0 6px">30-second pitch</div><div class="pitchtx">${esc(b.pitch)}</div><button class="link" data-act="bpitch" style="margin-top:8px">Hide pitch</button>`:`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b style="display:block">30-second pitch</b><small style="color:var(--muted);font-size:13px">Say it out loud, then check</small></div><button class="btn small" data-act="bpitch">Show pitch</button></div>`}</div>`;
+  if((b.quiz||[]).length) h+=`<button class="bquiz" data-act="bquiz"><span><b>${done?'Market check done today':'Daily market check'}</b><small>${b.quiz.length} questions · ${done?'tap to practise again':'earns XP toward your streak'}</small></span>${done?I.check:I.play}</button>`;
+  if((b.sources||[]).length) h+=`<div class="sec-h">Sources</div><div class="card bsrc">${b.sources.map(s=>srcLink(s)).join('')}</div><p class="note-s">Tap any number for its source. A lock means the page may need a subscription.</p>`;
+  return h;
+}
+
 /* ---------- review ---------- */
 function misses(){ const all=[...Object.entries(S.g),...Object.entries(S.d)].filter(([,v])=>v.s==='partial'||v.s==='missed'); return all.sort((a,b)=>a[1].t-b[1].t).map(e=>e[0]).filter(item); }
 function viewReview(){
   const m=misses(), fl=Object.keys(S.f).filter(item);
   let h=`<h1 class="pg">Review</h1>
+  <button class="act" data-act="tab" data-k="library" style="margin-bottom:10px"><span class="ic flag">${I.book}</span><span><b>Browse all questions</b><small>Search, filter by tier, section or status, and study notes</small></span></button>
   <button class="act" data-act="practice" data-k="misses" ${m.length?'':'disabled'}><span class="ic miss">${I.redo}</span><span><b>Practice mistakes</b><small>${m.length?'Partial and missed, oldest first':'Nothing to review yet'}</small></span><span class="n">${m.length}</span></button>
   <button class="act" data-act="practice" data-k="flagged" ${fl.length?'':'disabled'}><span class="ic flag">${I.flag}</span><span><b>Flagged questions</b><small>${fl.length?'The ones you marked to revisit':'Flag a question during a lesson'}</small></span><span class="n">${fl.length}</span></button>
   <button class="act" data-act="practice" data-k="quick"><span class="ic mix">${I.shuffle}</span><span><b>Quick 10</b><small>A random mix from every tier</small></span></button>
@@ -435,7 +508,7 @@ function libRows(){
   return `<div class="count">${list.length} question${list.length===1?'':'s'}</div><div class="card rows">${list.slice(0,150).map(x=>`<button class="row" data-act="one" data-id="${x.id}"><span class="dot ${st(x.id)}"></span><span class="tx"><b class="clamp">${esc(x.q)}</b><small>Tier ${x.tier} · ${esc(shortSec(x.section))}</small></span></button>`).join('')||'<p class="note-s" style="padding:0 14px">No questions match.</p>'}</div>${list.length>150?'<p class="note-s">Showing the first 150. Narrow the search to see more.</p>':''}`;
 }
 function viewLibrary(){
-  return `<h1 class="pg">Library</h1>
+  return `<button class="back" data-act="tab" data-k="review">${I.back}Review</button><h1 class="pg" style="margin-top:0">Library</h1>
   <input class="search" id="lib-q" type="search" placeholder="Search questions and answers" value="${esc(libQ)}" aria-label="Search">
   <div class="filters"><select id="lib-tier" aria-label="Tier"><option value="">All tiers</option>${[1,2,3,4,5].map(t=>`<option value="${t}"${+libTier===t?' selected':''}>Tier ${t} · ${TIERS[t][0]}</option>`).join('')}</select>
   <select id="lib-sec" aria-label="Section"><option value="">All sections</option>${SECTIONS.map(s=>`<option value="${esc(s)}"${libSec===s?' selected':''}>${esc(shortSec(s))}</option>`).join('')}</select></div>
@@ -502,8 +575,8 @@ function renderSession(){
 function reveal(){ if(!SES||SES.phase!=='ask') return; SES.phase='answer'; renderSession(); const b=document.getElementById('ses-body'); const a=b&&b.querySelector('.ans'); if(a) b.scrollTo({top:Math.max(0,a.offsetTop-90),behavior:'smooth'}); }
 function grade(g){
   const s=SES; if(!s||s.phase!=='answer') return;
-  const id=s.queue[s.i], map=isDeal(id)?S.d:S.g, prev=map[id]||{n:0};
-  map[id]={s:g,t:Date.now(),n:(prev.n||0)+1};
+  const id=s.queue[s.i];
+  if(!briefQ[id]){ const map=isDeal(id)?S.d:S.g, prev=map[id]||{n:0}; map[id]={s:g,t:Date.now(),n:(prev.n||0)+1}; }
   const k=dayKey(Date.now()); S.days[k]=(S.days[k]||0)+XP[g]; s.xp+=XP[g];
   s.res[id]=g; if(!(id in s.first)) s.first[id]=g;
   if(g!=='got'&&!s.second.has(id)&&s.kind!=='one'&&!s.retry.includes(id)) s.retry.push(id);
@@ -515,15 +588,15 @@ function next(){
   if(s.kind==='one') return endSession();
   s.i++; s.phase='ask'; s.picked=null;
   if(s.i>=s.queue.length&&s.retry.length){ s.retry.forEach(id=>s.second.add(id)); s.queue.push(...s.retry); s.retry=[]; }
-  if(s.i>=s.queue.length) s.phase='done';
+  if(s.i>=s.queue.length){ s.phase='done'; if(s.kind==='brief'&&BRIEF){ S.briefDone=BRIEF.date; save(); } }
   renderSession(); const b=document.getElementById('ses-body'); if(b) b.scrollTop=0;
 }
 function summary(){
   const s=SES, ids=[...new Set(s.queue)], got=ids.filter(id=>s.first[id]==='got').length, left=ids.filter(id=>s.res[id]&&s.res[id]!=='got').length;
   const answered=ids.filter(id=>s.first[id]).length, mins=Math.max(1,Math.round((Date.now()-s.start)/60000)), hit=s.xp0<S.goal&&todayXP()>=S.goal;
-  return `<div class="ses"><div class="sum"><div class="big">${got===answered&&answered?I.star:I.check}</div><h2>${s.kind==='lesson'?'Lesson complete!':'Practice complete!'}</h2><p>${esc(s.title)}</p>
+  return `<div class="ses"><div class="sum"><div class="big">${got===answered&&answered?I.star:I.check}</div><h2>${s.kind==='lesson'?'Lesson complete!':s.kind==='brief'?'Market check done!':'Practice complete!'}</h2><p>${esc(s.title)}</p>
   <div class="tiles"><div class="tile"><small>XP</small><b>+${s.xp}</b></div><div class="tile"><small>First try</small><b>${answered?Math.round(100*got/answered):0}%</b></div><div class="tile"><small>Time</small><b>${mins}m</b></div></div>
-  ${hit?`<p class="goalhit">Daily goal reached · ${streak()} day streak</p>`:''}${left?`<p style="margin-bottom:18px">${left} question${left>1?'s':''} saved to Review.</p>`:''}
+  ${hit?`<p class="goalhit">Daily goal reached · ${streak()} day streak</p>`:''}${left&&s.kind!=='brief'?`<p style="margin-bottom:18px">${left} question${left>1?'s':''} saved to Review.</p>`:''}
   <button class="btn primary block" data-act="quit">Continue</button></div></div>`;
 }
 function flashCard(){
@@ -548,6 +621,8 @@ document.addEventListener('click',e=>{
     else if(k==='sec'){ const ids=QUESTIONS.filter(q=>q.section===b.dataset.sec).map(q=>q.id); const order=ids.filter(x=>st(x)==='none').concat(ids.filter(x=>st(x)==='missed'||st(x)==='partial'),ids.filter(x=>st(x)==='got')); startSession('practice',order.slice(0,10),shortSec(b.dataset.sec)); }
     else if(k==='deal'){ const s=DEALS.find(x=>x.id===id); startSession('practice',dealIds(s),s.bank+' · '+s.title); } }
   else if(a==='one') startSession('one',[id],'Question');
+  else if(a==='bquiz') startSession('brief',BRIEF.quiz.map((_,i)=>'brief-'+BRIEF.date+'-'+i),'Daily market check');
+  else if(a==='bpitch'){ briefPitch=!briefPitch; renderAll(); }
   else if(a==='flash'){ SES={kind:'flash',title:'Flashcards',queue:shuffle(FLASH.map((_,i)=>i)),i:0,phase:'ask',known:0}; document.body.classList.add('in-session'); document.getElementById('session').hidden=false; renderSession(); }
   else if(a==='fflip'){ SES.phase='answer'; renderSession(); }
   else if(a==='fnext'){ if(b.dataset.k==='1') SES.known++; SES.i++; SES.phase='ask'; renderSession(); }
