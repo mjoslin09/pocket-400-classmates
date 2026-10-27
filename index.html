@@ -402,38 +402,6 @@ textarea.note:focus{outline:2px solid var(--accent);outline-offset:1px}
 .tabs button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;border-radius:12px;color:var(--muted);font-size:11.5px;font-weight:700}
 .tabs button svg{width:25px;height:25px}
 .tabs button[aria-selected="true"]{color:var(--accent);background:var(--accent-soft)}
-.side-brand,.side-x,.kbd{display:none}
-
-/* desktop: the tab bar becomes a left sidebar, content widens, lists become grids */
-@media (hover:hover){
-  .act:not([disabled]):hover,.row:hover,.cont:hover,.bquiz:hover,.mqgen:hover{filter:brightness(.97)}
-  .tabs button:not([aria-selected="true"]):hover{background:var(--sheet-2);color:var(--ink)}
-}
-@media (min-width:1000px){
-  :root{--side:236px}
-  .tabs{top:0;bottom:0;right:auto;width:var(--side);border-top:0;border-right:1px solid var(--rule);padding:20px 14px;display:flex;flex-direction:column;gap:18px;overflow-y:auto}
-  .side-brand{display:flex;padding:2px 10px}
-  .tabs .in{flex-direction:column;max-width:none;margin:0;gap:4px}
-  .tabs button{flex:none;flex-direction:row;justify-content:flex-start;gap:12px;padding:10px 12px;font-size:15px}
-  .tabs button svg{width:22px;height:22px}
-  .tabs .alert-dot{top:8px;left:28px}
-  .side-x{display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--rule-2);padding-top:14px}
-  .side-x small{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:0 12px 6px}
-  .side-x button{font-size:14px;font-weight:600;padding:8px 12px;color:var(--ink-2)}
-  .app{--w:1040px;max-width:var(--w);margin:0 0 0 calc(var(--side) + max(0px,(100vw - var(--side) - var(--w)) / 2));padding:0 40px 56px}
-  .app[data-view="learn"]{--w:720px}
-  .tb .brand{visibility:hidden}
-  h1.pg{font-size:30px;margin:10px 0 16px}
-  .bnums,.tiles{grid-template-columns:repeat(4,1fr)}
-  .app[data-view="review"]{display:grid;grid-template-columns:1fr 1fr;column-gap:12px;align-content:start}
-  .app[data-view="review"]>*:not(.act){grid-column:1/-1}
-  .app[data-view="review"] .act{margin-top:10px}
-  .ses-top,.ses-body{max-width:780px}
-  .ses-foot .in{max-width:748px}
-  .sq{font-size:27px}
-  .kbd{display:block;margin-top:10px;text-align:center;font-size:12.5px;color:var(--muted)}
-  .kbd b{display:inline-block;min-width:20px;padding:1px 6px;margin:0 2px;border:1px solid var(--rule);border-bottom-width:2px;border-radius:5px;font-size:11.5px;color:var(--ink-2)}
-}
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(16px);background:var(--ink);color:var(--sheet);padding:9px 14px;border-radius:10px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:40}
 .toast[data-on="1"]{opacity:1;transform:translateX(-50%)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
@@ -449,7 +417,7 @@ textarea.note:focus{outline:2px solid var(--accent);outline-offset:1px}
 <script>!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("katex")):"function"==typeof define&&define.amd?define(["katex"],t):"object"==typeof exports?exports.renderMathInElement=t(require("katex")):e.renderMathInElement=t(e.katex)}("undefined"!=typeof self?self:this,(function(e){return function(){"use strict";var t={771:function(t){t.exports=e}},n={};function r(e){var o=n[e];if(void 0!==o)return o.exports;var i=n[e]={exports:{}};return t[e](i,i.exports,r),i.exports}r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,{a:t}),t},r.d=function(e,t){for(var n in t)r.o(t,n)&&!r.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)};var o={};return function(){r.d(o,{default:function(){return d}});var e=r(771),t=r.n(e);const n=function(e,t,n){let r=n,o=0;const i=e.length;for(;r<t.length;){const n=t[r];if(o<=0&&t.slice(r,r+i)===e)return r;"\\"===n?r++:"{"===n?o++:"}"===n&&o--,r++}return-1},i=/^\\begin{/;var a=function(e,t){let r;const o=[],a=new RegExp("("+t.map((e=>e.left.replace(/[-/\\^$*+?.()|[\]{}]/g,"\\$&"))).join("|")+")");for(;r=e.search(a),-1!==r;){r>0&&(o.push({type:"text",data:e.slice(0,r)}),e=e.slice(r));const a=t.findIndex((t=>e.startsWith(t.left)));if(r=n(t[a].right,e,t[a].left.length),-1===r)break;const l=e.slice(0,r+t[a].right.length),s=i.test(l)?l:e.slice(t[a].left.length,r);o.push({type:"math",data:s,rawData:l,display:t[a].display}),e=e.slice(r+t[a].right.length)}return""!==e&&o.push({type:"text",data:e}),o};const l=function(e,n){const r=a(e,n.delimiters);if(1===r.length&&"text"===r[0].type)return null;const o=document.createDocumentFragment();for(let e=0;e<r.length;e++)if("text"===r[e].type)o.appendChild(document.createTextNode(r[e].data));else{const i=document.createElement("span");let a=r[e].data;n.displayMode=r[e].display;try{n.preProcess&&(a=n.preProcess(a)),t().render(a,i,n)}catch(i){if(!(i instanceof t().ParseError))throw i;n.errorCallback("KaTeX auto-render: Failed to parse `"+r[e].data+"` with ",i),o.appendChild(document.createTextNode(r[e].rawData));continue}o.appendChild(i)}return o},s=function(e,t){for(let n=0;n<e.childNodes.length;n++){const r=e.childNodes[n];if(3===r.nodeType){let o=r.textContent,i=r.nextSibling,a=0;for(;i&&i.nodeType===Node.TEXT_NODE;)o+=i.textContent,i=i.nextSibling,a++;const s=l(o,t);if(s){for(let e=0;e<a;e++)r.nextSibling.remove();n+=s.childNodes.length-1,e.replaceChild(s,r)}else n+=a}else if(1===r.nodeType){const e=" "+r.className+" ";-1===t.ignoredTags.indexOf(r.nodeName.toLowerCase())&&t.ignoredClasses.every((t=>-1===e.indexOf(" "+t+" ")))&&s(r,t)}}};var d=function(e,t){if(!e)throw new Error("No element provided to render");const n={};for(const e in t)t.hasOwnProperty(e)&&(n[e]=t[e]);n.delimiters=n.delimiters||[{left:"$$",right:"$$",display:!0},{left:"\\(",right:"\\)",display:!1},{left:"\\begin{equation}",right:"\\end{equation}",display:!0},{left:"\\begin{align}",right:"\\end{align}",display:!0},{left:"\\begin{alignat}",right:"\\end{alignat}",display:!0},{left:"\\begin{gather}",right:"\\end{gather}",display:!0},{left:"\\begin{CD}",right:"\\end{CD}",display:!0},{left:"\\[",right:"\\]",display:!0}],n.ignoredTags=n.ignoredTags||["script","noscript","style","textarea","pre","code","option"],n.ignoredClasses=n.ignoredClasses||[],n.errorCallback=n.errorCallback||console.error,n.macros=n.macros||{},s(e,n)}}(),o=o.default}()}));</script>
 
 <div class="app" id="app"></div>
-<nav class="tabs" id="tabs" aria-label="Sections"><div class="brand side-brand"><i>400</i>Pocket 400</div><div class="in" role="tablist"></div><div class="side-x" id="side-x"></div></nav>
+<nav class="tabs" id="tabs" aria-label="Sections"><div class="in" role="tablist"></div></nav>
 <div id="session" hidden></div>
 <div id="sdx" hidden></div>
 <div class="toast" id="toast" role="status"></div>
@@ -578,12 +546,7 @@ function topbar(){
 function renderAll(){
   if(!VIEWS.includes(S.tab)||(S.tab==='deals'&&!DEALS.length)) S.tab='learn';
   document.querySelector('#tabs .in').innerHTML=TABS.map(([k,l,ic])=>`<button role="tab" data-act="tab" data-k="${k}" aria-selected="${S.tab===k||((S.tab==='library'||S.tab==='stories')&&k==='review')}"${k==='brief'&&briefStale()?' aria-label="Brief, out of date"':''}>${ic}${l}${k==='brief'&&briefStale()?'<i class="alert-dot"></i>':''}</button>`).join('');
-  // desktop sidebar shortcuts (hidden on phones)
-  document.getElementById('side-x').innerHTML=`<small>Practice</small>`+[
-    SUPERDAY?['sd-open','','Superday']:null, ['flash','formulas','Formulas to know cold'], ['tab','library','Library'],
-    SUPERDAY?['tab','stories','My story bank']:null, ['flash','','Flashcards']].filter(Boolean)
-    .map(([a,k,l])=>`<button data-act="${a}"${k?` data-k="${k}"`:''}>${l}</button>`).join('');
-  const el=document.getElementById('app'); el.dataset.view=S.tab;
+  const el=document.getElementById('app');
   el.innerHTML=topbar()+({learn:viewLearn,brief:viewBrief,review:viewReview,stories:viewStories,deals:viewDeals,library:viewLibrary,progress:viewProgress}[S.tab])();
   if(S.tab==='library') wireLibrary();
 }
@@ -838,7 +801,7 @@ function renderSession(){
   else if(s.phase==='answer') foot=`<div class="q3"><button class="btn got" data-act="grade" data-g="got">Got it</button><button class="btn part" data-act="grade" data-g="partial">Partial</button><button class="btn miss" data-act="grade" data-g="missed">Missed</button></div><div class="sub"><button data-act="flag">${S.f[id]?'Unflag':'Flag'}</button><span style="color:var(--muted);font-size:13px">${q.options?(s.picked===correct?'You picked the right answer':'Compare with your pick'):'How close were you?'}</span></div>`;
   else { const g=s.res[id], msg={got:['Nice work','+10 XP'],partial:['Almost','+5 XP · it comes back later'],missed:["You'll get it next time",'+2 XP · it comes back later']}[g]; foot=`<div class="fb"><i>${g==='got'?I.check:g==='partial'?I.dash:I.x}</i><div>${msg[0]}<small>${s.kind==='one'?msg[1].split(' · ')[0]:msg[1]}</small></div></div>`; }
   el.innerHTML=`<div class="ses" role="dialog" aria-label="${esc(s.title)}"><div class="ses-top"><button class="x" data-act="quit" aria-label="Close">${I.x}</button><div class="pbar" aria-hidden="true"><i style="width:${100*(s.i+(s.phase==='fb'?1:0))/total}%"></i></div><span class="ses-n">${Math.min(s.i+1,total)}/${total}</span></div>
-    <div class="ses-body" id="ses-body">${body}</div><div class="ses-foot${s.phase==='fb'?' fb-'+s.res[id]:''}"><div class="in">${foot}${s.phase==='ask'?`<div class="kbd"><b>Space</b> reveal · <b>Esc</b> close</div>`:s.phase==='answer'?`<div class="kbd"><b>1</b> Got it · <b>2</b> Partial · <b>3</b> Missed</div>`:''}</div></div></div>`;
+    <div class="ses-body" id="ses-body">${body}</div><div class="ses-foot${s.phase==='fb'?' fb-'+s.res[id]:''}"><div class="in">${foot}</div></div></div>`;
 }
 function reveal(){ if(!SES||SES.phase!=='ask') return; SES.phase='answer'; renderSession(); const b=document.getElementById('ses-body'); const a=b&&b.querySelector('.ans'); if(a) b.scrollTo({top:Math.max(0,a.offsetTop-90),behavior:'smooth'}); }
 function grade(g){
