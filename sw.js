@@ -2,7 +2,7 @@
 // arrive on the next open) and served from the cache when offline.
 // each app on this origin keeps its own cache, named by prefix
 const PREFIX = 'pocket400-classmates:';
-const CACHE = PREFIX + '9459531265';
+const CACHE = PREFIX + 'd0b94c1bef';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'icon.svg'];
 
 self.addEventListener('install', e => {
